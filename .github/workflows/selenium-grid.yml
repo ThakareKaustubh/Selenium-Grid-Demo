@@ -25,7 +25,6 @@ jobs:
 
       chrome:
         image: selenium/node-chrome:4.20.0
-        depends_on: [ selenium-hub ]
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
@@ -33,7 +32,6 @@ jobs:
 
       firefox:
         image: selenium/node-firefox:4.20.0
-        depends_on: [ selenium-hub ]
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
