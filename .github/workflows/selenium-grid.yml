@@ -2,11 +2,12 @@ name: Selenium Grid Tests
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
-  selenium-tests:
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -16,22 +17,31 @@ jobs:
           - 4442:4442
           - 4443:4443
           - 4444:4444
+        options: >-
+          --health-cmd "curl -f http://localhost:4444 || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+
       chrome:
         image: selenium/node-chrome:4.20.0
+        depends_on: [ selenium-hub ]
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+
       firefox:
         image: selenium/node-firefox:4.20.0
+        depends_on: [ selenium-hub ]
         env:
           SE_EVENT_BUS_HOST: selenium-hub
           SE_EVENT_BUS_PUBLISH_PORT: 4442
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -43,17 +53,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium pytest pytest-xdist
 
-      - name: Wait for Grid to be ready
+      - name: Run tests
+        env:
+          GRID_URL: http://localhost:4444/wd/hub
         run: |
-          for i in {1..30}; do
-            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
-              echo "Grid is ready"
-              break
-            fi
-            echo "Waiting for Selenium Grid..."
-            sleep 2
-          done
-
-      - name: Run Selenium Grid tests
-        run: pytest -n 2 -v
+          pytest -v -n 2
 
