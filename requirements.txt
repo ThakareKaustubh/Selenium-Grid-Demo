@@ -1,3 +1,5 @@
 pytest
 pytest-xdist
 selenium
+pytest-allure-adaptor
+allure-pytest
