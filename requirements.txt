@@ -3,5 +3,4 @@ pytest-xdist
 selenium
 pytest-allure-adaptor
 allure-pytest
-namedlist==1.7
-
+git+https://github.com/jaraco/namedlist.git
