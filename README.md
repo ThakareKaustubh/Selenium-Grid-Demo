@@ -10,7 +10,6 @@ It also includes GitHub Actions CI workflow for test execution. Generates an art
 - **Selenium 4**
 - **Pytest**
 - **pytest-xdist** (parallel test execution)
-- **Docker + Docker Compose**
 - **Selenium Grid (Hub + Chrome/Firefox Nodes)**
 - **GitHub Actions** (CI/CD pipeline)
 - **Allure CLI** (pre-installed for future reporting)
@@ -18,10 +17,6 @@ It also includes GitHub Actions CI workflow for test execution. Generates an art
 ---
 
 ## 📁 Project Structure
-
-├── Dockerfile # Test runner Docker image
-
-├── docker-compose.yml # Sets up Selenium Grid and runner
 
 ├── requirements.txt # Python dependencies
 
@@ -50,13 +45,6 @@ def test_google_title(driver):
 
 ```
 
----------- Running Tests with Docker Compose------------------------------
-
-docker-compose up --build --abort-on-container-exit
-
-#This will spin up Selenium Hub, Chrome, Firefox nodes, and execute tests inside the test-runner container.
-
---------------------------------------------------------------------------
 
 ⚙️ GitHub Actions
 
@@ -72,8 +60,3 @@ Path: .github/workflows/selenium-grid-demo.yml
 
 
 
-🧼 Clean Up
-
-To stop and remove containers:
-
-docker-compose down
