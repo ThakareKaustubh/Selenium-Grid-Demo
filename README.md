@@ -39,12 +39,7 @@ It also includes GitHub Actions CI workflow for test execution. Generates an art
 
 
 ## 🧪 Test Scenario
-
-@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
-def test_google_title(driver):
-    driver.get("https://www.google.com")
-    assert "Google" in driver.title
-
+<pre> ```python import pytest @pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True) def test_google_title(driver): driver.get("https://www.google.com") assert "Google" in driver.title ``` </pre>
 
 
 ---------- Running Tests with Docker Compose------------------------------
