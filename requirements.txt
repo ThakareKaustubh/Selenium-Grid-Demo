@@ -3,3 +3,5 @@ pytest-xdist
 selenium
 pytest-allure-adaptor
 allure-pytest
+namedlist==1.7
+
