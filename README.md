@@ -20,23 +20,33 @@ It also includes GitHub Actions CI workflow for test execution. Generates an art
 ## 📁 Project Structure
 
 ├── Dockerfile # Test runner Docker image
+
 ├── docker-compose.yml # Sets up Selenium Grid and runner
+
 ├── requirements.txt # Python dependencies
+
 ├── conftest.py # Pytest fixtures for browser setup
+
 ├── tests/
+
 │ └── test_grid.py # Parametrized test on Google
+
 ├── .github/
+
 │ └── workflows/
+
 │ └── selenium-grid-demo.yml # GitHub Actions workflow
 
 
 ## 🧪 Test Scenario
 
 @pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
-def test_google_title(driver):
-    driver.get("https://www.google.com")
-    assert "Google" in driver.title
 
+def test_google_title(driver):
+
+    driver.get("https://www.google.com")
+    
+    assert "Google" in driver.title
 
 
 
