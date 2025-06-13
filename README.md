@@ -3,7 +3,6 @@
 This repository demonstrates a containerized Selenium Grid setup using Docker and Pytest to run cross-browser UI tests in parallel across Chrome and Firefox. 
 It also includes GitHub Actions CI workflow for test execution. Generates an artifact after execution using allure to generate results for the run.
 
----
 
 ## 🧰 Tech Stack
 
@@ -42,12 +41,15 @@ def test_google_title(driver):
 
 
 ---------- Running Tests with Docker Compose------------------------------
+
 docker-compose up --build --abort-on-container-exit
 
 #This will spin up Selenium Hub, Chrome, Firefox nodes, and execute tests inside the test-runner container.
 
 --------------------------------------------------------------------------
+
 ⚙️ GitHub Actions
+
 This project includes a GitHub Actions workflow to:
 
 Spin up Selenium Grid using service containers
@@ -61,5 +63,7 @@ Path: .github/workflows/selenium-grid-demo.yml
 
 
 🧼 Clean Up
+
 To stop and remove containers:
+
 docker-compose down
